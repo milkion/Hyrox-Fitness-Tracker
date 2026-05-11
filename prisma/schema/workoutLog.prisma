@@ -1,0 +1,16 @@
+model WorkoutLog {
+    uuid        String      @id @default(uuid())
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @updatedAt
+    startTime   DateTime
+    endTime     DateTime?
+
+    user        User        @relation("WorkoutLoggedByUser", fields: [userId], references: [uuid])
+    userId      String
+
+    planItem    PlanItem    @relation(fields: [planItemId], references: [uuid])
+    planItemId  String
+
+    workoutSession  WorkoutSession @relation("BelongsInSession", fields: [workoutSessionId], references: [uuid])
+    workoutSessionId    String
+}

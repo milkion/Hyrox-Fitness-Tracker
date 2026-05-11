@@ -1,0 +1,38 @@
+{
+  "name": "hyrox-fitness-tracker",
+  "version": "1.0.0",
+  "description": "A backend project for hyrox fitness tracker",
+  "license": "ISC",
+  "author": "Jasmine Koh",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prisma": "npx prisma generate",
+    "migrate": "npx prisma migrate dev",
+    "prepare": "husky",
+    "lint": "lint"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.0.0",
+    "@commitlint/config-conventional": "^21.0.0",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^25.6.2",
+    "@types/pg": "^8.20.0",
+    "dotenv": "^17.4.2",
+    "eslint": "^10.3.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.6.0",
+    "husky": "^9.1.7",
+    "prettier": "3.8.3",
+    "prisma": "^7.8.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.2"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "pg": "^8.20.0"
+  }
+}

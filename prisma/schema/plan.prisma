@@ -1,0 +1,23 @@
+enum Difficulty {
+    BEGINNER
+    INTERMEDIATE
+    ADVANCED
+}
+
+model Plan {
+    uuid        String      @id @default(uuid())
+    planName    String
+    description String?
+    difficulty  Difficulty  @default(BEGINNER)
+
+    forkedFrom   Plan?      @relation("ForkedFromPlanId", fields: [forkedFromId], references: [uuid], onDelete: Cascade)
+    forkedFromId String?   
+
+    customPlan  Plan[]       @relation("ForkedFromPlanId")
+
+    owner       User?       @relation("CustomPlanByUser", fields: [userId], references: [uuid], onDelete: Cascade)
+    userId      String?  
+
+    workoutSession  WorkoutSession[]   @relation("sessionUnderPlan")
+    planItem        PlanItem[]  @relation("exerciseOfPlan")
+}

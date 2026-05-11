@@ -1,0 +1,13 @@
+model User {
+  uuid              String      @id @default(uuid())
+  email             String      @unique
+  firstName         String      
+  lastName          String
+  hashedPassword    String
+  createdAt         DateTime     @default(now())
+  fitnessLevel      Int?
+
+  plan              Plan[]              @relation("CustomPlanByUser")
+  workoutLog        WorkoutLog[]        @relation("WorkoutLoggedByUser")
+  workoutSession    WorkoutSession[]    @relation("workoutExecutedByUser")
+}

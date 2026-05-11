@@ -1,0 +1,13 @@
+enum ExerciseType {
+    RUN
+    STATION
+    STRENGTH
+    CORE
+}
+
+model Exercise {
+    uuid            String  @id @default(uuid())
+    exerciseName    String
+    exerciseType    ExerciseType
+    planItem        PlanItem[]
+}

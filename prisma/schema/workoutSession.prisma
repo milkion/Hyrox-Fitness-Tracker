@@ -1,0 +1,22 @@
+enum WorkoutSessionStatus {
+    SCHEDULED
+    IN_PROGRESS
+    COMPLETED
+    CANCELLED
+}
+
+model WorkoutSession {
+    uuid        String                  @id @default(uuid())
+    notes       String?
+    startedAt   DateTime?               
+    endedAt     DateTime?    
+    status      WorkoutSessionStatus    @default(IN_PROGRESS)
+
+    user        User        @relation("workoutExecutedByUser", fields: [userId], references: [uuid])
+    userId      String
+
+    plan        Plan        @relation("sessionUnderPlan", fields: [planId], references: [uuid])
+    planId      String
+
+    workoutLog  WorkoutLog[]    @relation("BelongsInSession")
+}

@@ -1,0 +1,16 @@
+model PlanItem {
+    uuid        String      @id @default(uuid())
+    order       Int
+    distance    Int?
+    weight      Int?
+    reps        Int?
+    sets        Int?
+
+    exercise    Exercise    @relation(fields: [exerciseId], references: [uuid])
+    exerciseId  String      
+
+    plan        Plan        @relation("exerciseOfPlan", fields: [planId], references: [uuid])
+    planId      String
+
+    workoutLog  WorkoutLog[]
+}
