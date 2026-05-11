@@ -1,7 +1,7 @@
 import eslint from '@eslint/js'
-import tseslint from 'typescript-eslint'
 import prettierConfig from 'eslint-config-prettier'
 import globals from 'globals'
+import tseslint from 'typescript-eslint'
 
 export default tseslint.config([
   eslint.configs.recommended,
@@ -18,7 +18,10 @@ export default tseslint.config([
       'no-use-before-define': 'off',
       '@typescript-eslint/no-use-before-define': 'error',
       'no-unused-vars': 'off',
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
     },
   },
   prettierConfig,
