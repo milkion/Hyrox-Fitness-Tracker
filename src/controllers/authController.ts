@@ -1,17 +1,17 @@
 // handles the HTTP layers (req, res, status etc. )
 import type { Request, Response } from 'express'
 import { login, signUp } from '../services/authService'
+import { LoginValidator, SignUpValidator } from '../validators/auth'
 
 export async function signUpController(req: Request, res: Response) {
-  const { firstName, lastName, email, password, fitnessLevel } = req.body
+  const result = SignUpValidator.safeParse(req.body)
+  if (result.error) {
+    return res.status(400).json({ error: result.error.message })
+  }
 
   try {
     const user = await signUp({
-      firstName,
-      lastName,
-      email,
-      password,
-      fitnessLevel,
+      ...result.data,
     })
 
     const { hashedPassword, ...userFields } = user
@@ -25,10 +25,12 @@ export async function signUpController(req: Request, res: Response) {
 }
 
 export async function loginController(req: Request, res: Response) {
-  const { email, password } = req.body
-
+  const result = LoginValidator.safeParse(req.body)
+  if (result.error) {
+    return res.status(400).json({ error: result.error.message })
+  }
   try {
-    const userToken = await login({ email, password })
+    const userToken = await login({ ...result.data })
     return res.status(200).json(userToken)
   } catch (error) {
     return res.status(401).json({ error: (error as Error).message })

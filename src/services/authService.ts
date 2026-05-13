@@ -1,6 +1,6 @@
 // BUSINESS LOGIC ex: handles hashing passwords, generating tokens, encryption
 import * as argon2 from 'argon2'
-import * as jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 import { prisma } from '../lib/prisma'
 
 type signUpProps = {
@@ -8,7 +8,7 @@ type signUpProps = {
   lastName: string
   email: string
   password: string
-  fitnessLevel?: number
+  fitnessLevel?: number | undefined
 }
 
 type loginProps = {
