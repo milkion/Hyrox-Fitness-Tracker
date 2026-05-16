@@ -14,7 +14,8 @@
     "lint": "biome lint",
     "format": "biome format --write .",
     "check": "biome check --write .",
-    "dev": "tsx src/server.ts"
+    "dev": "tsx src/server.ts",
+    "seed": "npx prisma db seed"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.0.0",
