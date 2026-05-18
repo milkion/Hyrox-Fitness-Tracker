@@ -57,6 +57,9 @@ export async function getPlan(planId: string) {
 }
 
 export async function getUserPlans(userId: string) {
+  if (!userId) {
+    return []
+  }
   try {
     const res = await prisma.plan.findMany({
       where: {
